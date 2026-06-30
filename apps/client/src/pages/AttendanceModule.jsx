@@ -28,10 +28,14 @@ const AttendanceModule = ({ user }) => {
 
     // Fetch global lookups on load
     useEffect(() => {
-        if (!lookupsLoaded) {
-            dispatch(fetchLookups());
-        }
+        if (!lookupsLoaded) dispatch(fetchLookups());
     }, [dispatch, lookupsLoaded]);
+
+    useEffect(() => {
+        if (selectedCollegeId) {
+            dispatch(fetchLookups(selectedCollegeId));
+        }
+    }, [dispatch, selectedCollegeId]);
 
     // Handle initial selection once lookups are loaded
     useEffect(() => {
@@ -143,7 +147,7 @@ const AttendanceModule = ({ user }) => {
                 </div>
 
                 {loading ? (
-                    <div className="py-10 text-center font-semibold text-gray-500">Loading student roster...</div>
+                    <div className="py-10 text-center font-semibold text-gray-500">Loading student...</div>
                 ) : students.length === 0 ? (
                     <div className="py-10 text-center font-semibold text-gray-500">Please select a valid Class and College.</div>
                 ) : (

@@ -9,7 +9,7 @@ import { SpinnerIcon } from '@components/icons';
 // ─── Public Pages ────────────────────────────────────────────────────────────
 import Home from '@pages/Home';
 import Login from '@pages/Login';
-import SuperAdminLogin from '@pages/SuperAdminLogin';
+// import SuperAdminLogin from '@pages/SuperAdminLogin';
 import NotFound from '@pages/NotFound';
 import ProfilePage from '@pages/ProfilePage';
 
@@ -35,10 +35,13 @@ import ShowCollegesManager from '@/pages/manager/colleges/ShowCollegesManager';
 import AttendancePage from '@pages/shared/AttendancePage';
 import ReportPage from '@pages/shared/ReportPage';
 import FeesPage from '@pages/shared/FeesPage';
+import ProductivityPage from '@pages/shared/ProductivityPage';
 
 import { getProfile } from '@store/slices/authSlice';
 import { useToast } from '@hooks/useToast';
 import ManageClasses from './pages/ManageClasses/ManageClasses';
+import ManageSubject from './pages/ManageSubject/ManageSubject';
+import ManageMarksheet from './pages/ManageMarksheet/ManageMarksheet';
 import ManageDepartment from './pages/ManageDepartment/ManageDepartment';
 import ManageStudent from './pages/ManageStudent/ManageStudent';
 import ManageTeacher from './pages/ManageTeacher/ManageTeacher';
@@ -71,7 +74,7 @@ const router = createBrowserRouter([
       // ── Public routes ──────────────────────────────────────────────────
       { index: true, element: <Home /> },
       { path: 'login', element: <Login /> },
-      { path: 'superadminlogin', element: <SuperAdminLogin /> },
+      // { path: 'superadminlogin', element: <SuperAdminLogin /> },
       { path: 'profile/:username', element: <ProfilePage /> },
     ],
   },
@@ -90,11 +93,14 @@ const router = createBrowserRouter([
           { path: 'requests', element: <ShowRequestsAdmin /> },
           { path: 'departments', element: <ManageDepartment /> },
           { path: 'classes', element: <ManageClasses /> },
+          { path: 'subjects', element: <ManageSubject /> },
           { path: 'students', element: <ManageStudent /> },
           { path: 'teachers', element: <ManageTeacher /> },
-          { path: 'attendance', element: <AttendancePage /> },
-          { path: 'fees',       element: <FeesPage /> },
-          { path: 'reports',    element: <ReportPage /> },
+          { path: 'attendance', label: 'Attendance', element: <AttendancePage /> },
+          { path: 'fees', label: 'Fees Management', element: <FeesPage /> },
+          { path: 'marksheets', label: 'Marksheets', element: <ManageMarksheet /> },
+          { path: 'reports', label: 'Bi-Weekly Reports', element: <ReportPage /> },
+          { path: 'productivity', element: <ProductivityPage /> },
         ],
       },
     ],
@@ -108,14 +114,17 @@ const router = createBrowserRouter([
       {
         element: <ProtectedRoute allowedRoles={['Manager']} />,
         children: [
-          { path: 'colleges', element: <ShowCollegesManager /> },
+          // { path: 'colleges', element: <ShowCollegesManager /> },
           { path: 'departments', element: <ManageDepartment /> },
           { path: 'classes', element: <ManageClasses /> },
+          { path: 'subjects', element: <ManageSubject /> },
           { path: 'students', element: <ManageStudent /> },
           { path: 'teachers', element: <ManageTeacher /> },
-          { path: 'attendance', element: <AttendancePage /> },
-          { path: 'fees',       element: <FeesPage /> },
-          { path: 'reports',    element: <ReportPage /> },
+          { path: 'attendance', label: 'Attendance', element: <AttendancePage /> },
+          { path: 'fees', label: 'Fees Management', element: <FeesPage /> },
+          { path: 'marksheets', label: 'Marksheets', element: <ManageMarksheet /> },
+          { path: 'reports', label: 'Bi-Weekly Reports', element: <ReportPage /> },
+          { path: 'productivity', element: <ProductivityPage /> },
         ],
       },
     ],
@@ -131,11 +140,14 @@ const router = createBrowserRouter([
         children: [
           { path: 'departments', element: <ManageDepartment /> },
           { path: 'classes', element: <ManageClasses /> },
+          { path: 'subjects', element: <ManageSubject /> },
           { path: 'students', element: <ManageStudent /> },
           { path: 'teachers', element: <ManageTeacher /> },
-          { path: 'attendance', element: <AttendancePage /> },
-          { path: 'fees',       element: <FeesPage /> },
-          { path: 'reports',    element: <ReportPage /> },
+          { path: 'attendance', label: 'Attendance', element: <AttendancePage /> },
+          { path: 'fees', label: 'Fees Management', element: <FeesPage /> },
+          { path: 'marksheets', label: 'Marksheets', element: <ManageMarksheet /> },
+          { path: 'reports', label: 'Bi-Weekly Reports', element: <ReportPage /> },
+          { path: 'productivity', element: <ProductivityPage /> },
         ],
       },
     ],
@@ -152,8 +164,9 @@ const router = createBrowserRouter([
           { path: 'classes', element: <ManageClasses /> },
           { path: 'students', element: <ManageStudent /> },
           { path: 'attendance', element: <AttendancePage /> },
-          { path: 'fees',       element: <FeesPage /> },
-          { path: 'reports',    element: <ReportPage /> },
+          { path: 'fees', element: <FeesPage /> },
+          { path: 'reports', element: <ReportPage /> },
+          { path: 'productivity', element: <ProductivityPage /> },
         ],
       },
     ],

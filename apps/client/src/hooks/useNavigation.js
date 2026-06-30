@@ -7,42 +7,53 @@ import { useSelector } from 'react-redux';
  */
 const NAV_CONFIG = {
     Admin: [
-        { id: 'colleges',    label: 'Colleges',         path: 'colleges' },
-        { id: 'managers',    label: 'Managers',          path: 'managers' },
-        { id: 'requests',    label: 'College Requests',  path: 'requests' },
-        { id: 'departments', label: 'Departments',       path: 'departments' },
-        { id: 'classes',     label: 'Classes',           path: 'classes' },
-        { id: 'students',    label: 'Manage Students',   path: 'students' },
-        { id: 'teachers',    label: 'Manage Teachers',   path: 'teachers' },
-        { id: 'attendance',  label: 'Attendance',        path: 'attendance' },
-        { id: 'fees',        label: 'Fees Management',   path: 'fees' },
-        { id: 'reports',     label: 'Bi-Weekly Reports',  path: 'reports' },
+        { id: 'colleges', label: 'Colleges', path: 'colleges' },
+        { id: 'managers', label: 'Managers', path: 'managers' },
+        { id: 'requests', label: 'College Requests', path: 'requests' },
+        { id: 'departments', label: 'Departments', path: 'departments' },
+        { id: 'classes', label: 'Classes', path: 'classes' },
+        { id: 'subjects', label: 'Subjects', path: 'subjects' },
+        { id: 'students', label: 'Manage Students', path: 'students' },
+        { id: 'teachers', label: 'Manage Teachers', path: 'teachers' },
+        { id: 'attendance', label: 'Attendance', path: 'attendance' },
+        { id: 'fees', label: 'Fees Management', path: 'fees' },
+        { id: 'marksheets', label: 'Marksheets', path: 'marksheets' },
+        { id: 'reports', label: 'Bi-Weekly Reports', path: 'reports' },
+        { id: 'productivity', label: 'Student Productivity', path: 'productivity' },
     ],
     Principal: [
-        { id: 'departments', label: 'Departments',     path: 'departments' },
-        { id: 'classes',     label: 'Classes',          path: 'classes' },
-        { id: 'students',    label: 'Manage Students',  path: 'students' },
-        { id: 'teachers',    label: 'Manage Teachers',  path: 'teachers' },
-        { id: 'attendance',  label: 'Attendance',       path: 'attendance' },
-        { id: 'fees',        label: 'Fees Management',  path: 'fees' },
-        { id: 'reports',     label: 'Bi-Weekly Reports', path: 'reports' },
+        { id: 'departments', label: 'Departments', path: 'departments' },
+        { id: 'classes', label: 'Classes', path: 'classes' },
+        { id: 'subjects', label: 'Subjects', path: 'subjects' },
+        { id: 'students', label: 'Manage Students', path: 'students' },
+        { id: 'teachers', label: 'Manage Teachers', path: 'teachers' },
+        { id: 'attendance', label: 'Attendance', path: 'attendance' },
+        { id: 'fees', label: 'Fees Management', path: 'fees' },
+        { id: 'marksheets', label: 'Marksheets', path: 'marksheets' },
+        { id: 'reports', label: 'Bi-Weekly Reports', path: 'reports' },
+        { id: 'productivity', label: 'Student Productivity', path: 'productivity' },
     ],
     // Manager shares the same nav as Principal
     Manager: [
-        { id: 'departments', label: 'Departments',     path: 'departments' },
-        { id: 'classes',     label: 'Classes',          path: 'classes' },
-        { id: 'students',    label: 'Manage Students',  path: 'students' },
-        { id: 'teachers',    label: 'Manage Teachers',  path: 'teachers' },
-        { id: 'attendance',  label: 'Attendance',       path: 'attendance' },
-        { id: 'fees',        label: 'Fees Management',  path: 'fees' },
-        { id: 'reports',     label: 'Bi-Weekly Reports', path: 'reports' },
+        { id: 'colleges', label: 'Colleges', path: 'colleges' },
+        { id: 'departments', label: 'Departments', path: 'departments' },
+        { id: 'classes', label: 'Classes', path: 'classes' },
+        { id: 'subjects', label: 'Subjects', path: 'subjects' },
+        { id: 'students', label: 'Manage Students', path: 'students' },
+        { id: 'teachers', label: 'Manage Teachers', path: 'teachers' },
+        { id: 'attendance', label: 'Attendance', path: 'attendance' },
+        { id: 'fees', label: 'Fees Management', path: 'fees' },
+        { id: 'marksheets', label: 'Marksheets', path: 'marksheets' },
+        { id: 'reports', label: 'Bi-Weekly Reports', path: 'reports' },
+        { id: 'productivity', label: 'Student Productivity', path: 'productivity' },
     ],
     Teacher: [
-        { id: 'attendance',  label: 'Attendance',       path: 'attendance' },
-        { id: 'fees',        label: 'Fees Management',  path: 'fees' },
-        { id: 'reports',     label: 'Bi-Weekly Reports', path: 'reports' },
-        { id: 'grades',      label: 'Input Grades',     path: 'grades' },
-        { id: 'discipline',  label: 'Discipline / Notes', path: 'discipline' },
+        { id: 'attendance', label: 'Attendance', path: 'attendance' },
+        { id: 'fees', label: 'Fees Management', path: 'fees' },
+        { id: 'reports', label: 'Bi-Weekly Reports', path: 'reports' },
+        { id: 'productivity', label: 'Student Productivity', path: 'productivity' },
+        { id: 'grades', label: 'Input Grades', path: 'grades' },
+        { id: 'discipline', label: 'Discipline / Notes', path: 'discipline' },
     ],
     Student: [
         { id: 'dashboard', label: 'Dashboard', path: 'home' },
@@ -55,11 +66,11 @@ const NAV_CONFIG = {
  */
 export const getDefaultPath = (role) => {
     switch (role) {
-        case 'Admin':                   return 'colleges';
+        case 'Admin': return 'colleges';
         case 'Principal': case 'Manager': return 'departments';
-        case 'Teacher':                 return 'attendance';
-        case 'Student':                 return 'home';
-        default:                        return 'home';
+        case 'Teacher': return 'attendance';
+        case 'Student': return 'home';
+        default: return 'home';
     }
 };
 
@@ -69,8 +80,22 @@ export const getDefaultPath = (role) => {
 export const useNavigation = () => {
     const { user } = useSelector(state => state.auth);
     const role = user?.role;
+    let navItems = NAV_CONFIG[role] || [];
+    
+    // Filter features if user has a college with defined features
+    if (user?.collegeId?.features) {
+        const allowedFeatures = user.collegeId.features;
+        navItems = navItems.filter(item => {
+            // Check if item id is in the allowed features list
+            // Exempt common items like dashboard/home/requests/managers/colleges which are not college-specific features
+            const exemptItems = ['colleges', 'managers', 'requests', 'dashboard', 'home'];
+            if (exemptItems.includes(item.id)) return true;
+            return allowedFeatures.includes(item.id);
+        });
+    }
+
     return {
-        navItems: NAV_CONFIG[role] || [],
+        navItems,
         defaultPath: getDefaultPath(role),
         role,
         user,

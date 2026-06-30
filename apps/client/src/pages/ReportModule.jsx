@@ -71,6 +71,9 @@ const ReportModule = ({ user }) => {
     const [deleteConfirm, setDeleteConfirm] = useState(null); // reportId to confirm delete
 
     // ─── Load lookups ──────────────────────────────────────────────────────────
+    useEffect(() => {
+        if (!lookupsLoaded) dispatch(fetchLookups());
+    }, [dispatch, lookupsLoaded]);
 
     useEffect(() => {
         if (selectedCollegeId) {
@@ -216,15 +219,7 @@ const ReportModule = ({ user }) => {
     }, [students]);
 
     // ─── Reports grouped by student (for the overview table) ──────────────────
-    const reportsByStudent = React.useMemo(() => {
-        const map = {};
-        reports.forEach(r => {
-            const sid = String(r.studentId?._id || r.studentId);
-            if (!map[sid]) map[sid] = [];
-            map[sid].push(r);
-        });
-        return map;
-    }, [reports]);
+
 
     const canManage = ['Admin', 'Manager', 'Principal', 'Teacher'].includes(user?.role);
 

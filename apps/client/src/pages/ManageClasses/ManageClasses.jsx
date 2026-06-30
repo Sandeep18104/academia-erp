@@ -21,6 +21,7 @@ const ManageClasses = () => {
     // Form state
     const [formClass, setFormClass] = useState({ name: '', departmentId: '' });
     const [loading, setLoading] = useState(false);
+    const [isFetchingData, setIsFetchingData] = useState(true);
     const [editingItem, setEditingItem] = useState(null);
 
     const userRole = user?.role || '';
@@ -51,11 +52,14 @@ const ManageClasses = () => {
 
     const fetchClasses = async (collegeId) => {
         if (!collegeId && isMultiCollegeRole) return;
+        setIsFetchingData(true);
         try {
             const res = await academicService.getEntities('classes', collegeId);
             setClassesData(res.data.data || []);
-        } catch (e) { 
+        } catch { 
             toast.error("Failed to fetch data"); 
+        } finally {
+            setIsFetchingData(false);
         }
     };
 
@@ -73,7 +77,7 @@ const ManageClasses = () => {
             toast.success("Deleted");
             fetchClasses(selectedCollegeId);
             dispatch(fetchLookups(selectedCollegeId));
-        } catch (e) { 
+        } catch { 
             toast.error("Delete failed"); 
         }
     };
@@ -231,6 +235,7 @@ const ManageClasses = () => {
                     </div>
                     
                     <DataTable
+                        isLoading={isFetchingData}
                         columns={[
                             { header: 'Class Name', accessor: row => row.name },
                             { header: 'Department', accessor: row => row.departmentId?.name || 'N/A' },
